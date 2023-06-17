@@ -44,6 +44,22 @@ public class OrderTypeRESTController {
 		return orderType;
 	}
 	
+	/**
+	 * This method find order type data according to the order type's name.
+	 * 
+	 * @param orderType
+	 * @return A list of order types record
+	 */
+	@RequestMapping("/find/name")
+	public List<OrderType> findOrderType(@RequestBody OrderType orderType) {
+		
+		List<OrderType> orderTypes = 
+				orderTypeRepository.findByNameContaining(orderType.getName());
+		
+		return orderTypes;
+		
+	}
+	
 	// Inserts a new order type into the database
 	@PostMapping()
 	public OrderType insertOrderType(@RequestBody OrderType orderType) {
